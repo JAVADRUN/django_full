@@ -1,0 +1,51 @@
+create database javadb;
+drop database javaddb;
+drop database if exists javadb;
+
+varchar = معنی همان رشته ها است.
+دو تا از زبان های اصلی mysql
+data definition language (DDL) , data manipulation language(DML)
+
+data difinition language = زبان تعریف داده ها 
+data manipulation language = زبان دستکاری داده 
+
+آموزش به وجود آوردن یک table کامل
+create database classdb;
+use classdb;
+create table student(
+sid int, sname varchar(100),
+sphone varchar(100),
+primary key(sid));
+
+مقادیر
+sum max min count avg 
+
+use test1;
+insert into student
+(sid , sname)
+values
+(1 , 'javad') , (2 , 'fatime')
+
+use test1;
+insert into student
+(sid , sname)
+values
+(1 , 'javad')
+on duplicate key update
+sid = 1; , sname = 'reza';
+ 
+قسمت بعدی برابر با :
+student = نام table
+
+select  
+        *  اینجا میتوانیم ازش بخواهیم که چه چیز هایی را برای ما بر گرداند.
+from  
+        student
+میتوان در اینجا دستوراتی را ازش بخواهیم که نسبط به این دستورات چیز هایی را برای ما بر گرداند .
+برای مثال  :
+where از دستوراتی مثل  if  یا چیز های دیگر
+
+select * from student 
+group by بر اساس  columsهای table داده میشود 
+
+EMGINE = INNODB به معنی موتور MYSQL است.

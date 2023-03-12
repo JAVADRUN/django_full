@@ -1,0 +1,62 @@
+{% extends 'prj/base.html'%}
+{% load comment_tags %}
+{% load ratings %}
+{% block title %} {{object.name}} {% endblock %}
+{% block main%}
+{% load base_tags %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url({{object.images.url}})">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h2 class="text-warning">{{object.name}}</h2>
+                
+                    {% if object.is_special %}
+                    <span class="badge badge-danger pb-2">ویژه</span>
+                
+                    {% endif %}
+                      
+                    <h4>{{object.jpublish}}</h4>
+             
+                    {% ratings object %}
+                    <div>بازدیدها:
+                        {{object.hits.count}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+ 
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="text-right container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p class="text-justify text-right">
+                   <div>
+                     {% popular_article %}
+                     {% hot_article %}
+                   </div> 
+
+                {% if object.is_special %}
+                    {% if user.is_authenticated and user.is_special_user or user == object.author or user.is_superuser %}
+                    {{object.descriptions|safe}}    
+                    {% else %}
+                    {{object.descriptions|safe|truncatewords:30}}   
+                    <p class="alert alert-warning text-right">این مقاله ویژه است و باید برای مشاهده آن<a href="#">  اشتراک  </a>خرید.</p>
+                    {% endif %}
+                {% else %}
+                   {{object.descriptions|safe}}    
+                {% endif %}
+                {% render_comments object request %}
+                {% include_bootstrap %} 
+                
+                </p>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock%}

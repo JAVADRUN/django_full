@@ -1,0 +1,103 @@
+{% extends 'registration/base.html' %}
+
+
+{% block title %}
+{% block title_meta %}
+لیست مقالات
+{% endblock title_meta %}
+{% endblock title %}
+    
+
+{% block main %}
+
+<table class="table">
+    
+    {% if object_list %}
+    <thead>
+      <tr>
+        <th scope="col" class="ml-3">آیدی</th>
+        <th scope="col">نام مقاله</th>
+        <th scope="col">کاربری</th>
+        <th scope="col">توضیحات</th>
+        <th scope="col">عکس</th>
+        <th scope="col">زمان انتشار</th>
+        <th scope="col">تیک</th>
+        <th scope="col">دسته بندی</th>
+        <th scope="col">مقاله ویژه</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+        
+        {% for article in object_list %}
+          <tr>
+            <td>{{article.id}}</td> 
+            <td>
+                {% if article.status in 'bF'|make_list or user.is_superuser %}
+                  <a href="{% url 'account:article-update' article.pk %}">
+                    {{article.name}}</a>
+                {% else %}
+                {{article.name}}  
+                {% endif %}
+            </td>  
+            <td>{{article.author.get_full_name}}</td> 
+            <td>{{article.descriptions|safe|truncatewords:"20"}}</td> 
+            <td><img src="{{article.images.url}}" width='100' height='100' alt=""></td>
+            <td>{{article.publish}}</td>
+            <td>
+              
+              {% if article.is_special %}
+                <i class="fa fa-check-circle" 
+                style="color: green;"></i>
+                {% else %}
+                <i class="fa fa-minus-circle" 
+                style="color: red;"></i>
+              {% endif %}
+                
+              
+            </td>
+            <td>{{article.category_to_str}}</td> 
+            <td>
+              
+            {% if article.status == 'T' %}
+            <span class="badge badge-success pb-md-2">منتشر شده</span> 
+            <a class="badge badge-primary pb-md-2" target="_blank" href="{% url 'prj:detail' article.slug%}">نمایش مقاله در سایت</a>
+            <br>
+            {% elif article.status == 'i' %}
+            <span class="badge badge-info pb-md-2">درحال بررسی</span> 
+            <br>
+            {% if user.is_superuser %}
+            <a class="badge badge-secondary pb-md-2" href="{% url 'prj:preview' article.pk%}">پیشنمایش</a>
+            <br>
+            {% endif %}
+              
+            {% else %}
+            {% if article.status == 'F' %}
+            <span class="badge badge-danger pb-md-2">پیش نویس</span>
+            <br>
+            {% else %}    
+            <span class="badge badge-warning pb-md-2">برگشت داده شده</span>
+            {% endif %}
+            <a class="badge badge-secondary pb-md-2" href="{% url 'prj:preview' article.pk%}">پیشنمایش</a>
+            <br>
+            {% endif %}
+             
+            {% if user.is_superuser %}
+            <a class="badge badge-danger pb-md-2" href="{% url 'account:article-delete' article.pk %}">حذف</a>
+            {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+
+        
+       
+          
+    </tbody>
+
+    {% else %}
+    <h3>محتوایی برای نمایش وجود ندارد</h3>
+    {% endif %}
+      
+  </table>
+{% endblock main %}
+    

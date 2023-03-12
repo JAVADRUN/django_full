@@ -1,0 +1,7 @@
+github :
+
+1 =git remote add origin https://github.com/JAVADRUN/project.git2
+برای اد کردن پروژه با گیت هاب انجام میشود 
+2 = git push -u origin master/develop 
+3 = git clone https://github.com/JAVADRUN/project.git2 python
+3 = برای دانلود کردن فایل ها از روی گیت هاب بر روی سیستم.

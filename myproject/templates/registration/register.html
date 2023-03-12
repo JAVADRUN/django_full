@@ -1,0 +1,119 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load base_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ثبت نام</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="{% static  'registration/assets/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static  'registration/http://fonts.googleapis.com/css?family=Roboto:400,100,300,500' %}">
+	<link rel="stylesheet" href="{% static  'registration/assets/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static  'registration/assets/css/form-elements.css' %}">
+	<link rel="stylesheet" href="{% static  'registration/assets/css/style.css' %}">
+	<link rel="stylesheet" href="{% static  'registration/assets/css/rtl.css' %}">
+	
+
+		<!-- <script src="{% static 'registration/https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'%}"></script>
+		<script src="{% static 'registration/https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'%}"></script> -->
+	
+	
+	<!-- img -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- Favicon and touch icons -->
+	<link rel="shortcut icon" href="{% static 'registration/assets/ico/favicon.png' %}">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'registration/assets/ico/apple-touch-icon-144-precomposed.png' %}">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'registration/assets/ico/apple-touch-icon-114-precomposed.png' %}">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'registration/assets/ico/apple-touch-icon-72-precomposed.png' %}">
+	<link rel="apple-touch-icon-precomposed" href="{% static 'registration/assets/ico/apple-touch-icon-57-precomposed.png' %}">
+
+</head>
+<body>
+	<div class=" row justify-content-center">                   	
+		<div class="form-box">
+			<div class="form-top">
+				<div class="form-top-left">
+					<h3>ثبت نام در سایت</h3>
+				</div>
+				<div class="form-top-right">
+					<i class="fa fa-pencil"></i>
+				</div>
+			</div>
+			<div class="form-bottom">
+				<form role="form" method="post" class="registration-form">
+				   {% csrf_token %}
+					<div class="form-group">
+						<label class="sr-only" for="username">نام کاربری</label>
+						<input type="text" name="username"   class=" form-control text-right" id="username" placeholder="نام کاربری" style="font: small-caption;" >							
+						    {% if form.username.errors %}
+								<div class="errors">
+								{% for error in form.username.errors %}
+								<span>{{error}}</span>
+								{% endfor %}
+							</div> 
+							{% endif %}
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="email">ایمیل</label>
+						<input type="email" name="email"   class=" form-control text-right" id="email" placeholder="ایمیل" style="font: small-caption;" >							
+						    {% if form.email.errors %}
+								<div class="errors">
+								{% for error in form.email.errors %}
+								<span>{{error}}</span>
+								{% endfor %}
+							</div> 
+							{% endif %}
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="password1">رمزعبور</label>
+						<input type="password" name="password1"   class=" form-control text-right" id="password1" placeholder="رمز عبور" style="font: small-caption;" >							
+						    {% if form.password1.errors %}
+								<div class="errors">
+								{% for error in form.password1.errors %}
+								<span>{{error}}</span>
+								{% endfor %}
+							</div> 
+							{% endif %}
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="password2">تکرار رمز عبور</label>
+						<input type="password" name="password2"   class=" form-control text-right" id="password2" placeholder="تایید رمز عبور" style="font: small-caption;" >							
+						    {% if form.password2.errors %}
+								<div class="errors">
+								{% for error in form.password2.errors %}
+								<span>{{error}}</span>
+								{% endfor %}
+							</div> 
+							{% endif %}
+					</div>
+	
+					<a class="text-right" style="color: darkgreen; text-decoration:none;" href="{% url 'login' %}">
+						<h3 class="py-3">حسابی دارید وارد شوید؟</h3>
+					</a>
+	
+					<button type="submit" class="btn">ثبت نام</button>
+				</form>
+			</div>
+		</div>
+								
+	</div>
+
+	
+        <!-- Javascript -->
+        <script src="{% static  'registration/assets/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static  'registration/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static  'registration/assets/js/jquery.backstretch.min.js' %}"></script>
+        <script src="{% static  'registration/assets/js/scripts.js' %}"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+</body>
+
+</html>

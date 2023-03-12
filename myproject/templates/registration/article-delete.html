@@ -1,0 +1,33 @@
+
+
+{% extends 'registration/base.html' %}
+
+
+{% block title %}
+{% block title_meta %}
+حذف مقاله
+{% endblock title_meta %}
+{% endblock title %}
+    
+
+{% block main %}
+    <div class="col-md-8 mx-auto text-center">
+        <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title float-left">حذف مقاله</h3>
+                </div> 
+            
+            <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <p>آیا از حذف مقاله ««{{object}}»» از ««{{object.author.get_full_name}}»» اطمینان دارید؟</p>
+                        <button class="btn btn-danger px-4">
+                            <i class="fa fa-trash-restore-alt" aria-hidden="true"></i>
+                           </button>
+                           
+                    </form>
+            </div>
+        </div>
+     </div>
+{% endblock main %}
+    

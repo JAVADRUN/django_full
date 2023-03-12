@@ -1,0 +1,17 @@
+.social-login h3 {
+    color: #000;
+  }
+.social-login {
+    margin-top: auto;
+  }
+
+button.btn {
+    background: #29b100;
+  }
+.main-footer {
+    background: #1833c8;
+    border-top: 1px solid #126fcd;
+    color: #869099;
+    padding: 1rem;
+  }
+  

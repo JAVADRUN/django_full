@@ -1,0 +1,16 @@
+{% extends 'prj/list.html' %}
+
+
+{% block alert %}
+
+{% endblock %}
+
+{% block has_previous %}
+{% url 'prj:home'  page_obj.previous_page_number%}
+{% endblock has_previous %}
+
+{% block has_next %}
+{% url 'prj:home'  page_obj.next_page_number%}
+{% endblock has_next %}
+
+    

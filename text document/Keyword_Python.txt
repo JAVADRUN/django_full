@@ -1,0 +1,13 @@
+تمامی کلید واژه های پایتون 
+.نکته:که نمیتوان به آن ها دستوری وارد کرد و همه آن ها دستوراتی در خود ذخیره دارند
+False, elif, lambda,
+None, else, nonlocal,
+True, except, not,
+and, finally, or,
+as, for, pass,
+assert, from, raise,
+break, global, return,
+class, if, try,
+continue, import, while,
+def, in, with,
+del, is, yield,

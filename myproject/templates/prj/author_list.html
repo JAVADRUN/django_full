@@ -1,0 +1,16 @@
+{% extends 'prj/list.html' %}
+
+{% block alert %}
+  <h3 class="alert alert-warning text-center">نویسنده: {{author.first_name}}</h3>
+{% endblock alert %}
+    
+
+{% block has_previous %}
+{% url 'prj:author' author.username page_obj.previous_page_number%}
+{% endblock has_previous %}
+
+{% block has_next %}
+{% url 'prj:author' author.username page_obj.next_page_number%}
+{% endblock has_next %}
+
+    

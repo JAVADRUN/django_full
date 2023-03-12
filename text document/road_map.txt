@@ -1,0 +1,13 @@
+Rest api,
+signals,
+github انجام شد
+database( postgres , mysql ) در مسیر ید گی ی  mysql 
+design pattern ( python , object oritend programming advanced); انجام شد
+linux انجام شد با اوبونتو
+nginx ( linux ) 
+bind ( linux ) 
+celery
+rabbitmq
+docker ( beginner ) 
+redis
+java script ( axios, ajax) 

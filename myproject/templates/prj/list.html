@@ -1,0 +1,88 @@
+{% extends 'prj/base.html'%}
+{% load static %}
+{% block main%}
+<!-- Page Header-->
+
+{% include 'prj/header.html' %}
+{% load base_tags %}
+    
+<!-- Main Content-->
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">    
+            <!-- Post preview-->
+            {% popular_article %}
+            {% hot_article %}
+
+            {% block alert %}
+            {% endblock alert %}
+           {% for articles in object_list %}
+            <div class="post-preview row text-right">
+                <img src="{{articles.images.url}}" width="700" height="400" alt="">
+                <a href="{% url 'prj:detail' articles.slug %}">
+                    <h2 class="post-title">{{articles.name}}</h2>
+                    
+                    {% if articles.is_special %}
+                    <span class="badge badge-danger pb-2">ویژه</span>
+                    {% endif %}
+                   
+                </a>
+                  <div class="mt-2 text-success">بازدیدها:
+                        {{articles.hits.count}}
+                  </div>
+                
+               <p class="post-meta">
+                {% if articles.is_special %}
+                {% if user.is_authenticated and user.is_special_user or user == object.author or user.is_superuser %}
+                {{articles.descriptions|safe|truncatewords:30}}
+                {% else %}
+                {{articles.descriptions|safe|truncatewords:30}} 
+                <p class="alert alert-warning text-right">این مقاله ویژه است و باید برای مشاهده آن<a href="#"> اشتراک </a>خرید.</p>
+                {% endif %}
+                {% else %}
+                {{articles.descriptions|safe|truncatewords:30}}   
+                {% endif %}
+               
+                </p>
+                  <hr>
+                <p class="post-meta">{{articles.jpublish}}
+                <a href="{% url  'prj:author' articles.author %}">{{articles.author.first_name}}</a>
+                </p>
+                <div>
+                  
+                {% for cat in articles.category.active %}
+                    <a href="{% url 'prj:category' cat.slug %}">{{cat.name}}</a>
+                {% endfor %}
+                    
+              </div>
+            </div>  
+            <!-- Divider-->
+            <hr class="my-4" />
+           {% endfor %}
+            
+          
+              <!-- Post preview-->
+              <div class="post-preview row text-right">
+                <a href="post.html">
+                    <h2 class="post-title">شکست یک گزینه نیست</h2>
+                    <h3 class="post-subtitle">بسیاری می گویند اکتشاف بخشی از سرنوشت ماست، اما در واقع وظیفه ما در قبال نسل های آینده است.</h3>                                                                                                                                                                           
+                </div>
+                <div class="mb-4">
+                {% if page_obj.has_previous %}
+                <a class="btn btn-success post-meta text-uppercase ml-2" href="
+                {% block has_previous %}
+                {% endblock has_previous %}
+                  ">جدید →</a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <a class="btn btn-danger post-meta text-uppercase" href="
+                {% block has_next %}
+                {% endblock has_next %}
+                  ">قدیمی →</a>
+                {% endif %}   
+              </div>
+        </div>
+    </div>
+</div>
+
+{% endblock%}
